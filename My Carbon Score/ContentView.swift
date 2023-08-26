@@ -8,14 +8,31 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var nameComponents = "0"
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, earth!")
+            HStack {
+                Image(systemName: "globe")
+                    .imageScale(.large)
+                    .foregroundColor(.accentColor)
+                Text("My Carbon Score")
+                    .font(.custom("Fredoka", size: 30px))
+            }
+                
+            TextField(
+                "Field 1",
+                text: $nameComponents
+            )
+            .padding()
+            .keyboardType(.numberPad)
+            .disableAutocorrection(true)
+            .textFieldStyle(.roundedBorder)
+            
+            Text(nameComponents.debugDescription)
+                .font(.system(.body))
         }
-        .padding()
+        .border(.secondary)
+        
     }
 }
 

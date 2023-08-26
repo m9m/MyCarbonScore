@@ -11,6 +11,7 @@
 		C0536ABF2A9994A30058DB2D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0536ABE2A9994A30058DB2D /* ContentView.swift */; };
 		C0536AC12A9994A40058DB2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0536AC02A9994A40058DB2D /* Assets.xcassets */; };
 		C0536AC42A9994A40058DB2D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0536AC32A9994A40058DB2D /* Preview Assets.xcassets */; };
+		C0B6437B2A99B7D000CD9B74 /* Fredoka.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C0B6437A2A99B7D000CD9B74 /* Fredoka.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		C0536ABE2A9994A30058DB2D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C0536AC02A9994A40058DB2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C0536AC32A9994A40058DB2D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C0B6437A2A99B7D000CD9B74 /* Fredoka.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fredoka.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +53,7 @@
 		C0536ABB2A9994A30058DB2D /* My Carbon Score */ = {
 			isa = PBXGroup;
 			children = (
+				C0B6437A2A99B7D000CD9B74 /* Fredoka.ttf */,
 				C0536ABC2A9994A30058DB2D /* My_Carbon_ScoreApp.swift */,
 				C0536ABE2A9994A30058DB2D /* ContentView.swift */,
 				C0536AC02A9994A40058DB2D /* Assets.xcassets */,
@@ -127,6 +130,7 @@
 			files = (
 				C0536AC42A9994A40058DB2D /* Preview Assets.xcassets in Resources */,
 				C0536AC12A9994A40058DB2D /* Assets.xcassets in Resources */,
+				C0B6437B2A99B7D000CD9B74 /* Fredoka.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +273,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"My Carbon Score/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "My-Carbon-Score-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -297,6 +302,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"My Carbon Score/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "My-Carbon-Score-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
