@@ -22,7 +22,7 @@ struct RootView: View {
                     Text("Water")
                 }
                 .tag(2)
-        }.tint(.black)
+        }.tint(.black.opacity(0.7))
         
     }
 }
