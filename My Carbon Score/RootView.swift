@@ -17,13 +17,12 @@ struct RootView: View {
                 }
                 .tag(1)
             WasteWaterView()
-                .padding()
                 .tabItem {
                     Image(systemName: "water.waves")
                     Text("Water")
                 }
                 .tag(2)
-        }
+        }.tint(.black)
         
     }
 }
