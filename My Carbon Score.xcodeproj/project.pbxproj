@@ -8,19 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		C0536ABD2A9994A30058DB2D /* My_Carbon_ScoreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0536ABC2A9994A30058DB2D /* My_Carbon_ScoreApp.swift */; };
-		C0536ABF2A9994A30058DB2D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0536ABE2A9994A30058DB2D /* ContentView.swift */; };
+		C0536ABF2A9994A30058DB2D /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0536ABE2A9994A30058DB2D /* RootView.swift */; };
 		C0536AC12A9994A40058DB2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0536AC02A9994A40058DB2D /* Assets.xcassets */; };
 		C0536AC42A9994A40058DB2D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0536AC32A9994A40058DB2D /* Preview Assets.xcassets */; };
 		C0B6437B2A99B7D000CD9B74 /* Fredoka.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C0B6437A2A99B7D000CD9B74 /* Fredoka.ttf */; };
+		C0E0BE382A9A463A0001C3B8 /* WasteWaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E0BE372A9A463A0001C3B8 /* WasteWaterView.swift */; };
+		C0E0BE3A2A9A48D90001C3B8 /* CarbonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E0BE392A9A48D90001C3B8 /* CarbonView.swift */; };
+		C0E0BE3C2A9A61180001C3B8 /* leaf.png in Resources */ = {isa = PBXBuildFile; fileRef = C0E0BE3B2A9A61180001C3B8 /* leaf.png */; };
+		C0E0BE3E2A9A62850001C3B8 /* drop.png in Resources */ = {isa = PBXBuildFile; fileRef = C0E0BE3D2A9A62850001C3B8 /* drop.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C0536AB92A9994A30058DB2D /* My Carbon Score.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Carbon Score.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0536ABC2A9994A30058DB2D /* My_Carbon_ScoreApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = My_Carbon_ScoreApp.swift; sourceTree = "<group>"; };
-		C0536ABE2A9994A30058DB2D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C0536ABE2A9994A30058DB2D /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		C0536AC02A9994A40058DB2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C0536AC32A9994A40058DB2D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C0B6437A2A99B7D000CD9B74 /* Fredoka.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fredoka.ttf; sourceTree = "<group>"; };
+		C0E0BE372A9A463A0001C3B8 /* WasteWaterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WasteWaterView.swift; sourceTree = "<group>"; };
+		C0E0BE392A9A48D90001C3B8 /* CarbonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonView.swift; sourceTree = "<group>"; };
+		C0E0BE3B2A9A61180001C3B8 /* leaf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leaf.png; sourceTree = "<group>"; };
+		C0E0BE3D2A9A62850001C3B8 /* drop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drop.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,9 +61,12 @@
 		C0536ABB2A9994A30058DB2D /* My Carbon Score */ = {
 			isa = PBXGroup;
 			children = (
+				C0E0BE362A9A462D0001C3B8 /* Views */,
 				C0B6437A2A99B7D000CD9B74 /* Fredoka.ttf */,
+				C0E0BE3D2A9A62850001C3B8 /* drop.png */,
+				C0E0BE3B2A9A61180001C3B8 /* leaf.png */,
 				C0536ABC2A9994A30058DB2D /* My_Carbon_ScoreApp.swift */,
-				C0536ABE2A9994A30058DB2D /* ContentView.swift */,
+				C0536ABE2A9994A30058DB2D /* RootView.swift */,
 				C0536AC02A9994A40058DB2D /* Assets.xcassets */,
 				C0536AC22A9994A40058DB2D /* Preview Content */,
 			);
@@ -68,6 +79,15 @@
 				C0536AC32A9994A40058DB2D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C0E0BE362A9A462D0001C3B8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C0E0BE372A9A463A0001C3B8 /* WasteWaterView.swift */,
+				C0E0BE392A9A48D90001C3B8 /* CarbonView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -129,8 +149,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0536AC42A9994A40058DB2D /* Preview Assets.xcassets in Resources */,
+				C0E0BE3E2A9A62850001C3B8 /* drop.png in Resources */,
 				C0536AC12A9994A40058DB2D /* Assets.xcassets in Resources */,
 				C0B6437B2A99B7D000CD9B74 /* Fredoka.ttf in Resources */,
+				C0E0BE3C2A9A61180001C3B8 /* leaf.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,8 +163,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0536ABF2A9994A30058DB2D /* ContentView.swift in Sources */,
+				C0536ABF2A9994A30058DB2D /* RootView.swift in Sources */,
 				C0536ABD2A9994A30058DB2D /* My_Carbon_ScoreApp.swift in Sources */,
+				C0E0BE382A9A463A0001C3B8 /* WasteWaterView.swift in Sources */,
+				C0E0BE3A2A9A48D90001C3B8 /* CarbonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

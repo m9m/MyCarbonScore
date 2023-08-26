@@ -11,7 +11,7 @@ import SwiftUI
 struct My_Carbon_ScoreApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
         }
     }
 }
