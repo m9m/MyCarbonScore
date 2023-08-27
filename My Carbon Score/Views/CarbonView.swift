@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import UserNotifications
 
 struct CarbonView: View {
     @State private var reportedTons : String = "0.0"
@@ -17,6 +17,16 @@ struct CarbonView: View {
     @State private var heat = ""
     private var bodyTextSize : CGFloat = 18
     private var toolTip = "The most common factors that contribute towards your carbon footprint are transportation, meat and beef consumption, electricity usage, and gas usage. Those are the big factors that went into deciding your score.\n\nTo improve your carbon footprint as an individual, look at these factors. Use public transportation and carpool. Eat more vegetables and swap the beef for poultry. Turn off lights and turn down AC to reduce your power usage. Finally, keep an eye on your gas usage and turn down the heat when you leave the house. The Earth can take a lot of hits...but not forever! Thanks for doing your part!"
+    
+    func sendNotif() {
+        let content = UNMutableNotificationContent()
+        content.title = "Nature's Calling!"
+        content.body = "Let's Review Your Carbon Score for the Month!"
+        content.sound = UNNotificationSound.default
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 30, repeats: false)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request)
+    }
     
     
     func sigmoid_score_calc(tons: Float) -> Float {
@@ -159,7 +169,8 @@ struct CarbonView: View {
                             print(success ? "Authorization success" : "Authorization failed")
                             print(error?.localizedDescription ?? "")
                             if (success) {
-                                
+                                print("Sent notif")
+                                sendNotif()
                             }
                         }
                     }

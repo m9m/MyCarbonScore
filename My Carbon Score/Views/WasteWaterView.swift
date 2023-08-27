@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct WasteWaterView: View {
     @State private var reportedConsumed : String = "0"
@@ -16,11 +17,20 @@ struct WasteWaterView: View {
     @State private var loads = ""
     private var bodyTextSize : CGFloat = 18
     private var toolTip = "The most common factors that contribute towards your water consumption are showers, toilet flushes, laundry cycles, and dishwasher loads. Those are the big factors that went into deciding your score.\n\nTo reduce your water consumption as an individual, look at these factors. Keep an eye on your minutes in the shower and use conservative shower heads. Don't use the toilet as a wastebasket and flush tissues. Also, keep an eye on how many laundry loads you are throwing in and make the most of the space in the washer. Finally, use the most of the space in your washing machine (there are also lower water consumotion appliances to consider). There's a lot of fresh water, but not unlimited. Thanks for doing your part in creating generational sustainability!"
-    
+
+    func sendNotif() {
+        let content = UNMutableNotificationContent()
+        content.title = "Nature's Calling!"
+        content.body = "Let's Review Your Carbon Score for the Month!"
+        content.sound = UNNotificationSound.default
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 30, repeats: false)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request)
+    }
     
     func sigmoid_score_calc(consumed: Float) -> Float {
         // compares the float value of tons to the average of 1.3, and returns a rating of 1-10  (1 being the best 10 is awful)
-        let k : Int = 2
+        let k : Float = 0.01
         return 10 * (1 / (1 + pow(2.718, (Float(-1 * k) * (consumed - 574)))))
     }
     func calculateScore(shower : String, toilet : String, cycles : String, loads : String) {
@@ -36,6 +46,7 @@ struct WasteWaterView: View {
         let consumption_rounded : Float = round(consumption)
         var sig_score : Float = sigmoid_score_calc(consumed: consumption_rounded)
         sig_score = round(sig_score * 10) / 10.0
+        print(sig_score)
         
         // change color of score and score #
         changeColor(sig_score: sig_score)
@@ -158,7 +169,8 @@ struct WasteWaterView: View {
                             print(success ? "Authorization success" : "Authorization failed")
                             print(error?.localizedDescription ?? "")
                             if (success) {
-                                
+                                print("Sent notif")
+                                sendNotif()
                             }
                         }
                     }
