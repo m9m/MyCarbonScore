@@ -6,6 +6,7 @@ To Run:
 1. Download this repository as a zip and unzip.
 2. Double click this file here on mac.
   <img width="306" alt="Screenshot 2023-08-27 at 3 16 25 PM" src="https://github.com/m9m/MyCarbonScore/assets/95250150/cc14ca1b-c6f2-47b3-9788-bd601e5ccfd2">
+  
 4. Once in the workspace, hit command + R or go to Product -> Run. This opens the source in a simulator.
 
 See My Notes on how Carbon Footprint / Wastewater were Calculated: https://docs.google.com/document/d/1ijCJGx9zPSqrQZzX2w2ldY1c1IUnJ5405AHM434vCew/edit?usp=sharing
