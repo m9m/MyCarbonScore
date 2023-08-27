@@ -9,8 +9,6 @@ import SwiftUI
 
 
 struct CarbonView: View {
-    
-    //@State private var score : String = "0"
     @State private var reportedTons : String = "0.0"
     @State private var scoreColor : Color = .black.opacity(0.6)
     @State private var miles = ""
@@ -18,10 +16,11 @@ struct CarbonView: View {
     @State private var power = ""
     @State private var heat = ""
     private var bodyTextSize : CGFloat = 18
-    private var toolTip = "the most common causes that contribute towards your carbon footprint are transportation, meat and beef, consumption, electricity, usage, and gas"
+    private var toolTip = "The most common factors that contribute towards your carbon footprint are transportation, meat and beef consumption, electricity usage, and gas usage. Those are the big factors that went into deciding your score.\n\nTo improve your carbon footprint as an individual, look at these factors. Use public transportation and carpool. Eat more vegetables and swap the beef for poultry. Turn off lights and turn down AC to reduce your power usage. Finally, keep an eye on your gas usage and turn down the heat when you leave the house. The Earth can take a lot of hits...but not forever! Thanks for doing your part!"
     
     
     func sigmoid_score_calc(tons: Float) -> Float {
+        // compares the float value of tons to the average of 1.3, and returns a rating of 1-10  (1 being the best 10 is awful)
         let k : Int = 2
         return 10 * (1 / (1 + pow(2.718, (Float(-1 * k) * (tons - 1.3)))))
     }
@@ -38,18 +37,18 @@ struct CarbonView: View {
         let tons_rounded : Float = round(tons * 100 / 2000) / 100.0
         var sig_score : Float = sigmoid_score_calc(tons: tons_rounded)
         sig_score = round(sig_score * 10) / 10.0
-        print(tons_rounded)
+        
+        // change color of score and score #
         changeColor(sig_score: sig_score)
         if (tons_rounded < 99) {
             reportedTons = String(tons_rounded)
         } else {
             reportedTons = "99+"
         }
-        //score = String(sig_score)+"/10"
     }
     
     func changeColor (sig_score: Float) {
-        print(sig_score)
+        // determine a color from the 0-10 emission level
         switch sig_score {
             case 8..<10.1:
                 scoreColor = .red
@@ -68,6 +67,7 @@ struct CarbonView: View {
     
     var body: some View {
         ZStack{
+            // set background
             LinearGradient(gradient: Gradient(colors: [.black.opacity(0.1), .green.opacity(0.6), .green.opacity(0.6), .green]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
             VStack () {// start main vstack
@@ -148,6 +148,7 @@ struct CarbonView: View {
                 }
                 .font(.custom("Fredoka", size: bodyTextSize))
                 .padding([.horizontal], 15) //end heat
+                
                 HStack { // start buttons
                     Button("Get My Score") {
                         calculateScore(miles: miles, servings: servings, power: power, heat: heat)
@@ -166,34 +167,34 @@ struct CarbonView: View {
                     .buttonStyle(.borderedProminent)
                 } // end buttons
                 
-                HStack {
+                HStack { // border
                     VStack {
-                        Text(reportedTons)
+                        Text(reportedTons) // line 1
                             .font(.custom("Fredoka", size: bodyTextSize*2))
                             .padding([.horizontal], 50).padding([.top], 15).padding([.bottom],5)
                             .foregroundColor(scoreColor)
-                        HStack {
+                        HStack {// main message
                             Text("You emit")
                                 .font(.custom("Fredoka", size: bodyTextSize))
                                 .foregroundColor(.black.opacity(0.7))
                             Text(reportedTons)
                                 .font(.custom("Fredoka", size: bodyTextSize))
                                 .foregroundColor(.black.opacity(0.7))
-                            Text("tons of co2.")
+                            Text("tons of CO2.")
                                 .font(.custom("Fredoka", size: bodyTextSize))
                                 .foregroundColor(.black.opacity(0.7))
-                        }
-                        Text("The average is 1.3")
+                        }// line 2
+                        Text("The average is 1.3/ week.") // line 3
                             .font(.custom("Fredoka", size: bodyTextSize))
                             .padding([.horizontal], 50).padding([.bottom], 15)
                             .foregroundColor(.black.opacity(0.7))
                     }.overlay(
                         RoundedRectangle(cornerRadius: 13).stroke(.black.opacity(0.6), lineWidth: 4)
                     )
-                }
+                }// end border
                 .padding(20)
                 
-                NavigationLink(destination: LearnView(bodyText: "", backGround: .green.opacity(0.6))) {
+                NavigationLink(destination: LearnView(bodyText: toolTip, backGround: .green.opacity(0.6))) {
                     Text("How Can I Reduce My Emissions?")
                 }
                 .buttonStyle(.borderedProminent)
@@ -201,10 +202,8 @@ struct CarbonView: View {
                 
             }// end main vstack
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-            //.border(.secondary)
             .navigationBarTitle("")
             .navigationBarHidden(true)
-            //.frame(maxWidth: <#T##CGFloat?#>: .infinity, height: .infinity)
             
         } // end zstack
     }
