@@ -7,32 +7,64 @@
 
 import SwiftUI
 
-class Calculator {
-    var miles : Int
-    var meat : Int
-    var electricity : Int
 
-    
-    init() {
-        self.miles = 0
-        self.meat = 0
-        self.electricity = 0
-    }
-    
-    
-    
-}
-func calculateScore(miles : Float, servings : Float, power : Float, heat : Float) -> Float {
-    let score:Float = (miles*30*404/453.592) + (servings*3*30)+(power*0.822/0.169)+(heat*11.7/1.395)
-    return round(score * 100) / 100.0
-}
 struct CarbonView: View {
     
+    //@State private var score : String = "0"
+    @State private var reportedTons : String = "0.0"
+    @State private var scoreColor : Color = .black.opacity(0.6)
     @State private var miles = ""
     @State private var servings = ""
     @State private var power = ""
     @State private var heat = ""
     private var bodyTextSize : CGFloat = 18
+    private var toolTip = "the most common causes that contribute towards your carbon footprint are transportation, meat and beef, consumption, electricity, usage, and gas"
+    
+    
+    func sigmoid_score_calc(tons: Float) -> Float {
+        let k : Int = 2
+        return 10 * (1 / (1 + pow(2.718, (Float(-1 * k) * (tons - 1.3)))))
+    }
+    func calculateScore(miles : String, servings : String, power : String, heat : String) {
+        let unwrapped_miles = Float(miles) ?? 0
+        let unwrapped_servings = Float(servings) ?? 0
+        let unwrapped_power = Float(power) ?? 0
+        let unwrapped_heat = Float(heat) ?? 0
+        let one:Float = (unwrapped_miles*30.0*404.0/453.592)
+        let two:Float = (unwrapped_servings*3*30)
+        let three:Float = (unwrapped_power*0.822/0.169)
+        let four:Float = (unwrapped_heat*11.7/1.395)
+        let tons:Float = one + two + three + four
+        let tons_rounded : Float = round(tons * 100 / 2000) / 100.0
+        var sig_score : Float = sigmoid_score_calc(tons: tons_rounded)
+        sig_score = round(sig_score * 10) / 10.0
+        print(tons_rounded)
+        changeColor(sig_score: sig_score)
+        if (tons_rounded < 99) {
+            reportedTons = String(tons_rounded)
+        } else {
+            reportedTons = "99+"
+        }
+        //score = String(sig_score)+"/10"
+    }
+    
+    func changeColor (sig_score: Float) {
+        print(sig_score)
+        switch sig_score {
+            case 8..<10.1:
+                scoreColor = .red
+            case 6..<8:
+                scoreColor = .red.opacity(0.8)
+            case 4..<6:
+                scoreColor = .orange.opacity(0.7)
+            case 2..<4:
+                scoreColor = .black.opacity(0.6)
+            case 0..<2:
+                scoreColor = .black.opacity(0.6)
+            default:
+                scoreColor = .black.opacity(0.6)
+        }
+    }
     
     var body: some View {
         ZStack{
@@ -87,7 +119,7 @@ struct CarbonView: View {
                 
                 
                 HStack { // start power
-                    Text("Monthly Power Bill").padding(5)
+                    Text("Monthly Electricity Bill").padding(5)
                     TextField(
                         "$...",
                         text: $power
@@ -103,7 +135,7 @@ struct CarbonView: View {
                 
                 
                 HStack { // start heat
-                    Text("Monthly Heat Bill").padding(5)
+                    Text("Monthly Gas Bill").padding(5)
                     TextField(
                         "$...",
                         text: $heat
@@ -116,24 +148,57 @@ struct CarbonView: View {
                 }
                 .font(.custom("Fredoka", size: bodyTextSize))
                 .padding([.horizontal], 15) //end heat
+                HStack { // start buttons
+                    Button("Get My Score") {
+                        calculateScore(miles: miles, servings: servings, power: power, heat: heat)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    Button("Enable Notifications") {
+                        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                            print(success ? "Authorization success" : "Authorization failed")
+                            print(error?.localizedDescription ?? "")
+                            if (success) {
+                                
+                            }
+                        }
+                    }
+                    .colorInvert()
+                    .buttonStyle(.borderedProminent)
+                } // end buttons
                 
-                Text(heat.debugDescription)
-                    .font(.system(.body))
-                Button("Get My Score") {
+                HStack {
+                    VStack {
+                        Text(reportedTons)
+                            .font(.custom("Fredoka", size: bodyTextSize*2))
+                            .padding([.horizontal], 50).padding([.top], 15).padding([.bottom],5)
+                            .foregroundColor(scoreColor)
+                        HStack {
+                            Text("You emit")
+                                .font(.custom("Fredoka", size: bodyTextSize))
+                                .foregroundColor(.black.opacity(0.7))
+                            Text(reportedTons)
+                                .font(.custom("Fredoka", size: bodyTextSize))
+                                .foregroundColor(.black.opacity(0.7))
+                            Text("tons of co2.")
+                                .font(.custom("Fredoka", size: bodyTextSize))
+                                .foregroundColor(.black.opacity(0.7))
+                        }
+                        Text("The average is 1.3")
+                            .font(.custom("Fredoka", size: bodyTextSize))
+                            .padding([.horizontal], 50).padding([.bottom], 15)
+                            .foregroundColor(.black.opacity(0.7))
+                    }.overlay(
+                        RoundedRectangle(cornerRadius: 13).stroke(.black.opacity(0.6), lineWidth: 4)
+                    )
+                }
+                .padding(20)
+                
+                NavigationLink(destination: LearnView(bodyText: "", backGround: .green.opacity(0.6))) {
+                    Text("How Can I Reduce My Emissions?")
                 }
                 .buttonStyle(.borderedProminent)
                 .colorInvert()
                 
-                Button("Enable Notifications") {
-                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-                        print(success ? "Authorization success" : "Authorization failed")
-                        print(error?.localizedDescription ?? "")
-                        if (success) {
-                            
-                        }
-                    }
-                }
-                .buttonStyle(.borderedProminent)
             }// end main vstack
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
             //.border(.secondary)

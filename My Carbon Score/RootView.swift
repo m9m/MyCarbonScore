@@ -9,21 +9,22 @@ import SwiftUI
 import UserNotifications    
 struct RootView: View {
     var body: some View {
-        TabView {
-            CarbonView()
-                .tabItem {
-                    Image(systemName: "carbon.dioxide.cloud")
-                    Text("Carbon")
-                }
-                .tag(1)
-            WasteWaterView()
-                .tabItem {
-                    Image(systemName: "water.waves")
-                    Text("Water")
-                }
-                .tag(2)
-        }.tint(.black.opacity(0.7))
-        
+        NavigationView {
+            TabView {
+                CarbonView()
+                    .tabItem {
+                        Image(systemName: "carbon.dioxide.cloud")
+                        Text("Carbon")
+                    }
+                    .tag(1)
+                WasteWaterView()
+                    .tabItem {
+                        Image(systemName: "water.waves")
+                        Text("Water")
+                    }
+                    .tag(2)
+            }.tint(.black.opacity(0.7)) //end tabview
+        } // end nav view
     }
 }
 
