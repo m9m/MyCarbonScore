@@ -50,10 +50,10 @@ struct WasteWaterView: View {
         
         // change color of score and score #
         changeColor(sig_score: sig_score)
-        if (consumption_rounded > 99) {
+        if (consumption_rounded < 999) {
             reportedConsumed = String(consumption_rounded)
         } else {
-            reportedConsumed = "99+"
+            reportedConsumed = "999+"
         }
     }
     
