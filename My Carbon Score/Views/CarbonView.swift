@@ -23,7 +23,7 @@ struct CarbonView: View {
         content.title = "Nature's Calling!"
         content.body = "Let's Review Your Carbon Score for the Month!"
         content.sound = UNNotificationSound.default
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 30, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60*60*24*7, repeats: false)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request)
     }
